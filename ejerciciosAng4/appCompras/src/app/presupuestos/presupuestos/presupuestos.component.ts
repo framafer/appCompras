@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PresupuestosService } from '../../servicios/presupuestos.service';
 import { Presupuesto } from 'src/app/modelos/presupuesto.interface';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class PresupuestosComponent {
         }
       }
     });
+    console.log(this.presupuestos);
     }
 
 }

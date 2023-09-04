@@ -15,6 +15,7 @@ export class AddpresComponent {
   presupuestoForm: any;
   presupuesto!: Presupuesto;
   
+  
   base: any;
   tipo: any;
   iva: number = 0;
@@ -54,6 +55,7 @@ export class AddpresComponent {
 
 
     const savePresupuesto = {
+      id$: "",
       proveedor : this.presupuestoForm.get('proveedor')?.value,
       fecha: this.presupuestoForm.get('fecha')?.value,
       concepto: this.presupuestoForm.get('concepto')?.value,

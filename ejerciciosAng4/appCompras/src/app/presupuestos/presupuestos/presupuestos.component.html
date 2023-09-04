@@ -6,16 +6,19 @@
     40px;">
     <thead>
         <tr class="filters">
+            <th>Id</th>
             <th>Proveedor</th>
             <th>Fecha</th>
             <th>Concepto</th>
             <th>Base</th>
             <th>IVA</th>
             <th>Total</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let presupuesto of presupuestos">
+            <td>{{ presupuesto.id$ }}</td>
             <td>{{ presupuesto.proveedor }}</td>
             <td>{{ presupuesto.fecha }}</td>
 
@@ -23,6 +26,11 @@
             <td>{{ presupuesto.base }}</td>
             <td>{{ presupuesto.iva }}</td>
             <td>{{ presupuesto.total }}</td>
+            <td>
+                <button type="button" class="btn btn-success"
+                routerLink="/editpres/{{ presupuesto.id$ }}">Editar</button>
+            </td>
         </tr>
     </tbody>
 </table>
+
