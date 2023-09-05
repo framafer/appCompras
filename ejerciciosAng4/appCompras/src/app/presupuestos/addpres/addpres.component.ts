@@ -36,6 +36,9 @@ export class AddpresComponent {
       iva: [0],
       total: [0]
     });
+
+    this.presupuestoForm.get('iva')?.disable();
+    this.presupuestoForm.get('total')?.disable();
     //this.presupuesto = {proveedor:"", fecha: "", concepto:"", base:0, tipo:"", iva:0, total:0, }
     this.onChanges();
   }
