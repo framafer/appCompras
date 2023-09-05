@@ -71,11 +71,11 @@
             </div>
             <div class="form-group">
                 <label for="iva">Importe IVA</label>
-                <input type="number" class="form-control" id="iva" formControlName="iva" [value]="presupuestoForm.value.iva" [disabled]="true">
+                <input type="number" class="form-control" id="iva" formControlName="iva" [value]="presupuestoForm.value.iva">
             </div>
             <div class="form-group">
                 <label for="total">Total Factura IVA Incluido</label>
-                <input type="number" class="form-control" id="total" formControlName="total" [value]="presupuestoForm.value.total" [disabled]="true">
+                <input type="number" class="form-control" id="total" formControlName="total" [value]="presupuestoForm.value.total">
             </div>
             
             <button type="submit" class="btn btn-primary" [disabled]="!presupuestoForm.valid">Añadir
