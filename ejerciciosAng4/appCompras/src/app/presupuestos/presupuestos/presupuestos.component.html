@@ -6,6 +6,7 @@
     40px;">
     <thead>
         <tr class="filters">
+            <th>Id</th>
             <th>Proveedor</th>
             <th>Fecha</th>
             <th>Concepto</th>
@@ -16,6 +17,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let presupuesto of presupuestos">
+            <td>{{ presupuesto.id$ }}</td>
             <td>{{ presupuesto.proveedor }}</td>
             <td>{{ presupuesto.fecha }}</td>
 

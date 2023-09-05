@@ -20,6 +20,8 @@ export class AddpresComponent {
   iva: number = 0;
   total: number = 0;
 
+  
+
   constructor(private pf: FormBuilder, private presupuestoService: PresupuestosService, private router: Router) {
     
   }
@@ -59,10 +61,10 @@ export class AddpresComponent {
       concepto: this.presupuestoForm.get('concepto')?.value,
       base: this.presupuestoForm.get('base')?.value,
       tipo: this.presupuestoForm.get('tipo')?.value,
-      /* iva: this.presupuestoForm.get('iva')?.value,
-      total: this.presupuestoForm.get('total')?.value */
+      
       iva: this.iva,
-      total: this.total
+      total: this.total,
+      
 
     };
     return savePresupuesto;
