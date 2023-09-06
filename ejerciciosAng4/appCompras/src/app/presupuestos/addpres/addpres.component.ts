@@ -66,7 +66,7 @@ export class AddpresComponent {
       tipo: this.presupuestoForm.get('tipo')?.value,
       
       iva: this.iva,
-      total: this.total,
+      total: this.total
       
 
     };

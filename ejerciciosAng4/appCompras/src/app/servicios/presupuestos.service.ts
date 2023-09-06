@@ -15,6 +15,8 @@ export class PresupuestosService {
 
 
   presURL = '/presupuestos.json';
+  preURL = '/presupuestos';
+
   constructor(public http: HttpClient
     ) { }
 
@@ -38,5 +40,30 @@ export class PresupuestosService {
     getPresupuestos(): Observable<{ [key: string]: Presupuesto }> {
       return this.http.get<{ [key: string]: Presupuesto }>(this.presURL);
     }
+
+
+    getPresupuesto(id$: string){
+      const url = `${this.preURL}/${id$}.json`;
+      return this.http.get(url).pipe(
+        
+        map(res => res));
+    }
+
+
+    putPresupuesto( presupuesto: any, id$: string) {
+      const newpre = JSON.stringify(presupuesto);
+      const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      });
+      const url = `${ this.preURL }/${ id$ }.json`;
+      return this.http.put( url, newpre, {headers}).pipe(
+      map( res => {
+      console.log(res);
+      return res;    // Esto devuelve un objeto json
+      }))
+    }
+    
+  
+    
 
 }
