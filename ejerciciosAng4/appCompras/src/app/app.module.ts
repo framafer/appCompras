@@ -18,6 +18,7 @@ import { AddpresComponent } from './presupuestos/addpres/addpres.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.component';
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
+import { RegistroComponent } from './autenticacion/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditpresComponent } from './presupuestos/editpres/editpres.component';
     AddpresComponent,
     PresupuestosComponent,
     EditpresComponent,
+    RegistroComponent,
     
   ],
   imports: [
