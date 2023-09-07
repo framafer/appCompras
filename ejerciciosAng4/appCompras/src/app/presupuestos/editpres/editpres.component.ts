@@ -9,7 +9,7 @@ import { Presupuesto } from 'src/app/modelos/presupuesto.interface';
   templateUrl: './editpres.component.html',
   styleUrls: ['./editpres.component.css']
 })
-export class EditpresComponent implements AfterViewInit {
+export class EditpresComponent {
 
   presupuestoForm: any;
   presupuesto!: Presupuesto;
@@ -45,8 +45,8 @@ export class EditpresComponent implements AfterViewInit {
       concepto: ['', [Validators.required, Validators.minLength(10)]],
       base: ['', Validators.required],
       tipo: ['', Validators.required],
-      iva: [0],
-      total: [0]
+      iva: [],
+      total: []
     });
 
     this.presupuestoForm.get('iva')?.disable();
@@ -56,12 +56,25 @@ export class EditpresComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
+  /* ngAfterViewInit() {
     // Realizar asignaciones de valores aquí después de que Angular haya completado su ciclo de detección de cambios inicial
+    this.presupuestoForm.value.iva = this.iva;
+    this.presupuestoForm.value.total = this.total;
   }
 
+  ngOnChanges() {
+    // Realizar asignaciones de valores aquí después de que Angular haya completado su ciclo de detección de cambios inicial
+    
+      this.iva = this.presupuestoForm.value.base * this.presupuestoForm.value.tipo;
+      this.total = this.presupuestoForm.value.base + this.iva;
+      this.presupuestoForm.value.iva = this.iva;
+      this.presupuestoForm.value.total = this.total;
+  }
+ */
+
   onSubmit() {
-    this.presupuesto = this.savePresupuesto();
+    //this.presupuesto = this.savePresupuesto();
+    this.actualizaPresupuesto();
     this.presupuestoService.putPresupuesto(this.presupuesto, this.id).subscribe(newpre => {
       // Hacer algo después de la actualización
     });
@@ -76,8 +89,8 @@ export class EditpresComponent implements AfterViewInit {
       concepto: this.presupuestoForm.get('concepto')?.value,
       base: this.presupuestoForm.get('base')?.value,
       tipo: this.presupuestoForm.get('tipo')?.value,
-      iva: this.iva,
-      total: this.total
+      iva: this.presupuestoForm.get('iva').value,
+      total: this.presupuestoForm.get('total').value
     };
     return savePresupuesto;
   }
@@ -86,10 +99,16 @@ export class EditpresComponent implements AfterViewInit {
     this.presupuestoForm.valueChanges.subscribe((valor: { base: any; tipo: any }) => {
       this.base = valor.base;
       this.tipo = valor.tipo;
-      this.presupuestoForm.value.iva = this.base * this.tipo;
-      this.presupuestoForm.value.total = this.base + (this.base * this.tipo);
-      this.iva = this.presupuestoForm.value.iva;
-      this.total = this.presupuestoForm.value.total;
+
+      this.iva = this.base * this.tipo;
+      this.total = this.base + this.iva;
+
+      this.presupuestoForm.value.base = this.base;
+      this.presupuestoForm.value.tipo = this.tipo;
+      this.presupuestoForm.value.iva = this.presupuestoForm.value.base * this.presupuestoForm.value.tipo;
+      this.presupuestoForm.value.total = this.presupuestoForm.value.base + this.presupuestoForm.value.iva;
+      this.actualizaPresupuesto();
+
     });
   }
 
@@ -107,4 +126,16 @@ export class EditpresComponent implements AfterViewInit {
       });
     }
   }
+
+  actualizaPresupuesto(){
+
+    this.presupuesto.proveedor = this.presupuestoForm.value.proveedor;
+    this.presupuesto.fecha = this.presupuestoForm.value.fecha;
+    this.presupuesto.concepto = this.presupuestoForm.value.concepto;
+    this.presupuesto.base = this.presupuestoForm.value.base;
+    this.presupuesto.tipo = this.presupuestoForm.value.tipo;
+    this.presupuesto.iva = this.presupuestoForm.value.iva;
+    this.presupuesto.total = this.presupuestoForm.value.total;
+  }
+
 }
