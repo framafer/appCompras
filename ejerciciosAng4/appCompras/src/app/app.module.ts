@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.component';
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
+import { InisesComponent } from './autenticacion/inises/inises.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
     PresupuestosComponent,
     EditpresComponent,
     RegistroComponent,
+    InisesComponent,
     
   ],
   imports: [
