@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ProveedoresService } from "src/app/servicios/proveedores.service";
+import { AutenticacionService } from './servicios/autenticacion.service';
+
 import { ProveedoresComponent } from './proveedores/proveedores/proveedores.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { HeaderComponent } from './header/header.component';
@@ -41,7 +43,7 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
     HttpClientModule
     
   ],
-  providers: [ProveedoresService, PresupuestosService],
+  providers: [ProveedoresService, PresupuestosService, AutenticacionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

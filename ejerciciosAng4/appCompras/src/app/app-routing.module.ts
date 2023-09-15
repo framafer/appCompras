@@ -10,6 +10,7 @@ import { RegistroComponent } from './autenticacion/registro/registro.component';
 
 const routes: Routes = [
   { path: "", component: InicioComponent },
+  
   { path: "proveedores", component: ProveedoresComponent },
   // { path: "**", component: InicioComponent},    Cuidado aquí con esta línea que te arruina la navegación. Si se pone tiene que ser al final del todo.
   { path: "addprovee", component: AddproveeComponent},

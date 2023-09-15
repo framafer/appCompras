@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from
-  '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AutenticacionService } from '../../servicios/autenticacion.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-registro',
@@ -12,7 +14,16 @@ export class RegistroComponent {
   registroForm!: FormGroup;
   userdata: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  erroresForm = {
+    'email': '',
+    'password': ''
+  }
+
+  constructor(private formBuilder: FormBuilder,
+    private autService: AutenticacionService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.registroForm = this.formBuilder.group({
@@ -33,6 +44,8 @@ export class RegistroComponent {
   }
   onSubmit() {
     this.userdata = this.saveUserdata();
+    this.autService.registroUsuario(this.userdata);
+    this.router.navigate(['/'])
   }
 
   saveUserdata() {
