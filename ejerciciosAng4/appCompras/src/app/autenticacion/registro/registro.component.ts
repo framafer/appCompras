@@ -14,16 +14,29 @@ export class RegistroComponent {
   registroForm!: FormGroup;
   userdata: any;
 
-  erroresForm = {
+  erroresForm: { [key: string]: string } = {
     'email': '',
     'password': ''
-  }
+  };
+
+  mensajesValidacion: { [key: string]: { [key: string]: string } } = {
+    'email': {
+      'required': 'Email obligatorio',
+      'email': 'Introduzca una dirección email correcta'
+    },
+    'password': {
+      'required': 'Contraseña obligatoria',
+      'pattern': 'La contraseña debe tener al menos una letra y un número',
+      'minlength': 'y más de 6 caracteres'
+    }
+  };
+
 
   constructor(private formBuilder: FormBuilder,
     private autService: AutenticacionService,
     private router: Router,
     private activatedRouter: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.registroForm = this.formBuilder.group({
@@ -39,8 +52,8 @@ export class RegistroComponent {
       ]
       ]
     });
-    this.registroForm.valueChanges.subscribe(data =>
-      console.log(data));
+    this.registroForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    this.onValueChanged();
   }
   onSubmit() {
     this.userdata = this.saveUserdata();
@@ -57,6 +70,21 @@ export class RegistroComponent {
   }
 
 
-  
+  onValueChanged(data?: any) {
+    if (!this.registroForm) { return; }
+    const form = this.registroForm;
+    for (const field in this.erroresForm) {
+      this.erroresForm[field] = '';
+      const control = form.get(field);
+      if (control && control.dirty && !control.valid) {
+        const messages = this.mensajesValidacion[field];
+        for (const key in control.errors) {
+          this.erroresForm[field] += messages[key] + ' ';
+        }
+      }
+    }
+  }
+
+
 }
 
