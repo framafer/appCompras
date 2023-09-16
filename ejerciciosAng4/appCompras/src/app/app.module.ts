@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
+import { FacturasModule } from 'src/app/facturas/facturas.module';
+
 import { PresupuestosService } from 'src/app/servicios/presupuestos.service';
 
 
@@ -42,7 +44,8 @@ import { InisesComponent } from './autenticacion/inises/inises.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FacturasModule
     
   ],
   providers: [ProveedoresService, PresupuestosService, AutenticacionService],

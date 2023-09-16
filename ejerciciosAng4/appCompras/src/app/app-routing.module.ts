@@ -9,6 +9,7 @@ import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { InisesComponent } from './autenticacion/inises/inises.component';
 import { GuardService } from './servicios/guard.service';
+import { FacturasComponent } from './facturas/facturas/facturas.component';
 
 const routes: Routes = [
   { path: "", component: InicioComponent,canActivate:[GuardService] },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'addpres', component: AddpresComponent, canActivate:[GuardService]},
   { path: 'presupuestos', component: PresupuestosComponent, canActivate:[GuardService] },
   { path: 'editpres/:id', component: EditpresComponent, canActivate:[GuardService] },
+  { path: 'facturas', component: FacturasComponent, canActivate:[GuardService] },
   { path: 'registro', component: RegistroComponent },
   { path: 'iniciosesion', component: InisesComponent },
   { path: "**", component: InicioComponent}
