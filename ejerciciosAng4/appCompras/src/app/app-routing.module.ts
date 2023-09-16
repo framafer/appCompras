@@ -8,18 +8,19 @@ import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { InisesComponent } from './autenticacion/inises/inises.component';
+import { GuardService } from './servicios/guard.service';
 
 const routes: Routes = [
-  { path: "", component: InicioComponent },
+  { path: "", component: InicioComponent,canActivate:[GuardService] },
   
-  { path: "proveedores", component: ProveedoresComponent },
-  // { path: "**", component: InicioComponent},    Cuidado aquí con esta línea que te arruina la navegación. Si se pone tiene que ser al final del todo.
-  { path: "addprovee", component: AddproveeComponent},
-  { path: 'addpres', component: AddpresComponent},
-  { path: 'presupuestos', component: PresupuestosComponent },
-  { path: 'editpres/:id', component: EditpresComponent },
+  { path: "proveedores", component: ProveedoresComponent, canActivate:[GuardService] },
+  { path: "addprovee", component: AddproveeComponent, canActivate:[GuardService]},
+  { path: 'addpres', component: AddpresComponent, canActivate:[GuardService]},
+  { path: 'presupuestos', component: PresupuestosComponent, canActivate:[GuardService] },
+  { path: 'editpres/:id', component: EditpresComponent, canActivate:[GuardService] },
   { path: 'registro', component: RegistroComponent },
-  { path: 'iniciosesion', component: InisesComponent }
+  { path: 'iniciosesion', component: InisesComponent },
+  { path: "**", component: InicioComponent}
 
 ];
 
