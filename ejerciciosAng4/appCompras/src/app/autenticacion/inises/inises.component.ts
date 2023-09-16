@@ -13,6 +13,9 @@ export class InisesComponent {
 
   loginForm: any;
   userdata: any;
+
+  mensaje = false;
+
   constructor(private formBuilder: FormBuilder,
     private autService: AutenticacionService,
     private router: Router,
@@ -38,6 +41,11 @@ export class InisesComponent {
   onSubmit() {
     this.userdata = this.saveUserdata();
     this.autService.inicioSesion(this.userdata);
+    setTimeout(() => {
+      if (this.isAuth() === false) {
+        this.mensaje = true;
+      }
+    }, 2000);
   }
 
   saveUserdata() {
@@ -49,6 +57,9 @@ export class InisesComponent {
   }
 
 
+  isAuth() {
+    return this.autService.isAuthenticated();
+  }
 
 
 }

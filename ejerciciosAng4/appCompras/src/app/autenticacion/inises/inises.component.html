@@ -8,6 +8,10 @@
             <input type="password" id="inputPassword" class="form-control" formControlName="password" required>
             <hr>
             <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Inicie sesión</button>
+            <p class="alert alert-danger" *ngIf="mensaje">
+                El usuario o contraseña no es correcto
+            </p>
         </form>
+
     </div>
 </div>

@@ -64,12 +64,28 @@ export class AutenticacionService {
       .catch(
         error => {
           const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+          const errorMessage = error.message;
+          // ..
 
-        console.log(errorCode, errorMessage);
+          console.log(errorCode, errorMessage);
         }
       )
   }
+
+
+  isAuthenticated() {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    const auth = getAuth();
+    auth.signOut();
+    }
 
 }
