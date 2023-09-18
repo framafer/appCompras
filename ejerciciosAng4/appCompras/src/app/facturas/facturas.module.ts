@@ -5,12 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FacturasComponent } from './facturas/facturas.component';
+import { FacturasService } from './servicios/facturas.service';
+import { AddfacturaComponent } from './addfactura/addfactura.component';
 
 
 
 @NgModule({
   declarations: [
-    FacturasComponent
+    FacturasComponent,
+    AddfacturaComponent
   ],
   imports: [
     CommonModule,
@@ -18,6 +21,7 @@ import { FacturasComponent } from './facturas/facturas.component';
     ReactiveFormsModule,
     HttpClientModule
 
-  ]
+  ],
+  providers: [FacturasService],
 })
 export class FacturasModule { }

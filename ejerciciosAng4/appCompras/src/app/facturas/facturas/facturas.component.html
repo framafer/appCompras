@@ -1,1 +1,42 @@
-<p>facturas works!</p>
+<h3>Listado de facturas</h3>
+<a class="btn btn-primary float-md-right" routerLink="/addfactura">Añadir
+    nueva factura</a>
+<br>
+<table class="table table-bordered table-striped tabla" style="margin-top:
+    40px;">
+    <thead>
+        <tr class="filters">
+            <th>Id</th>
+            <th>Proveedor</th>
+            <th>C.I.F.</th>
+            <th>Fecha</th>
+            <th>Concepto</th>
+            <th>Base</th>
+            <th>IVA</th>
+            <th>Total</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let factura of facturas">
+            <td>{{ factura.id$ }}</td>
+            <td>{{ factura.proveedor }}</td>
+            <td>{{ factura.cif }}</td>
+            <td>{{ factura.fecha }}</td>
+
+            <td>{{ factura.concepto }}</td>
+            <td>{{ factura.base }}</td>
+            <td>{{ factura.iva }}</td>
+            <td>{{ factura.total }}</td>
+            <td>
+<!--                 <button type="button" class="btn btn-success"
+                routerLink="/editpres/{{ factura.id$ }}">Editar</button> -->
+            </td>
+            <td>
+                <button class="btn btn-danger" type="button"
+                (click)="eliminarFactura(factura.id$)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
