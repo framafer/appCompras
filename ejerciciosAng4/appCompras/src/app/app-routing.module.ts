@@ -11,6 +11,7 @@ import { InisesComponent } from './autenticacion/inises/inises.component';
 import { GuardService } from './servicios/guard.service';
 import { FacturasComponent } from './facturas/facturas/facturas.component';
 import { AddfacturaComponent } from './facturas/addfactura/addfactura.component';
+import { EditfacturaComponent } from './facturas/editfactura/editfactura.component';
 
 const routes: Routes = [
   { path: "", component: InicioComponent,canActivate:[GuardService] },
@@ -19,8 +20,8 @@ const routes: Routes = [
   { path: "addprovee", component: AddproveeComponent, canActivate:[GuardService]},
   { path: 'addpres', component: AddpresComponent, canActivate:[GuardService]},
   { path: 'presupuestos', component: PresupuestosComponent, canActivate:[GuardService] },
-  { path: 'facturas', component: FacturasComponent, canActivate:[GuardService] },
   { path: 'addfactura', component: AddfacturaComponent, canActivate:[GuardService]},
+  { path: 'editfactura/:id', component: EditfacturaComponent, canActivate:[GuardService] },
   { path: 'editpres/:id', component: EditpresComponent, canActivate:[GuardService] },
   { path: 'facturas', component: FacturasComponent, canActivate:[GuardService] },
   { path: 'registro', component: RegistroComponent },

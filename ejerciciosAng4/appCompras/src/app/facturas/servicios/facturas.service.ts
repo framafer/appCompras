@@ -37,7 +37,7 @@ export class FacturasService {
     }
 
 
-    getFactura(id$: string){
+    getFactura(id$: string):Observable<any>{
       const url = `${this.preURL}/${id$}.json`;
       return this.http.get(url).pipe(
         
