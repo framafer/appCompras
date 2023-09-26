@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FacturasService } from '../servicios/facturas.service';
 import { Factura } from '../modelos/factura';
+import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 
 @Component({
   selector: 'app-editfactura',
@@ -14,6 +15,9 @@ export class EditfacturaComponent {
 
   facturaForm: any;
   factura!: Factura;
+
+  proveedores: any[] = [];
+
   base: any;
   tipo: any;
   iva: any = 0;
@@ -25,7 +29,8 @@ export class EditfacturaComponent {
     private pf: FormBuilder,
     private facturaService: FacturasService,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private proveedoresService: ProveedoresService
   ) {
     
     this.activatedRouter.params.subscribe(parametros => {
@@ -41,6 +46,13 @@ export class EditfacturaComponent {
       });
     });
 
+    this.proveedoresService.getProveedores().subscribe(proveedores => {
+      for (const id$ in proveedores) {
+        if (proveedores.hasOwnProperty(id$)) {
+          this.proveedores.push({ ...proveedores[id$], id$ });
+        }
+      }
+    });
     
   }
 

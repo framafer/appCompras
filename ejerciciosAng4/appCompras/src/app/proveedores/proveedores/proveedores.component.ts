@@ -8,6 +8,7 @@ import { ProveedoresService } from "src/app/servicios/proveedores.service";
 })
 export class ProveedoresComponent {
 
+
   
 
   proveedores:any[] = [];

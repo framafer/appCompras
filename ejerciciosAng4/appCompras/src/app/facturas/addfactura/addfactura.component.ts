@@ -6,6 +6,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Factura } from '../modelos/factura';
 import { FacturasService } from '../servicios/facturas.service';
+import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 
 @Component({
   selector: 'app-addfactura',
@@ -15,6 +16,7 @@ import { FacturasService } from '../servicios/facturas.service';
 export class AddfacturaComponent {
   facturaForm: any;
   factura!: Factura;
+  proveedores: any[] = [];
   
   base: any;
   tipo: any;
@@ -23,8 +25,18 @@ export class AddfacturaComponent {
 
   
 
-  constructor(private pf: FormBuilder, private facturaService: FacturasService, private router: Router) {
-    
+  constructor(private pf: FormBuilder, 
+              private facturaService: FacturasService, 
+              private router: Router,
+              private proveedoresService: ProveedoresService) {
+                this.proveedoresService.getProveedores().subscribe(proveedores => {
+                  for (const id$ in proveedores) {
+                    if (proveedores.hasOwnProperty(id$)) {
+                      this.proveedores.push({ ...proveedores[id$], id$ });
+                    }
+                  }
+                });
+
   }
 
   ngOnInit() {

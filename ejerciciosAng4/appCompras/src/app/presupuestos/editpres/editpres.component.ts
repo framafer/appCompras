@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PresupuestosService } from '../../servicios/presupuestos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Presupuesto } from 'src/app/modelos/presupuesto.interface';
+import { ProveedoresService } from 'src/app/servicios/proveedores.service';
 
 @Component({
   selector: 'app-editpres',
@@ -13,6 +14,9 @@ export class EditpresComponent {
 
   presupuestoForm: any;
   presupuesto!: Presupuesto;
+
+  proveedores: any[] = [];
+
   base: any;
   tipo: any;
   iva: any = 0;
@@ -23,7 +27,8 @@ export class EditpresComponent {
     private pf: FormBuilder,
     private presupuestoService: PresupuestosService,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private proveedoresService: ProveedoresService
   ) {
     this.activatedRouter.params.subscribe(parametros => {
       this.id = parametros['id'];
@@ -32,6 +37,14 @@ export class EditpresComponent {
         // Asignar valores al formulario después de obtener el presupuesto
         this.setFormValues();
       });
+    });
+
+    this.proveedoresService.getProveedores().subscribe(proveedores => {
+      for (const id$ in proveedores) {
+        if (proveedores.hasOwnProperty(id$)) {
+          this.proveedores.push({ ...proveedores[id$], id$ });
+        }
+      }
     });
 
     

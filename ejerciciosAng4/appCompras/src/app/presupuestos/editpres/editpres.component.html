@@ -9,7 +9,14 @@
                 <i class="fa fa-check-circle check" *ngIf="presupuestoForm.controls.proveedor.valid"></i>
                 <i class="fa fa-exclamation-circle uncheck" *ngIf="presupuestoForm.controls.proveedor.invalid &&
                 presupuestoForm.controls.proveedor.touched"></i>
-                <input type="text" class="form-control" id="proveedor" formControlName="proveedor" (ngModelChange)="presupuesto.proveedor = $event">
+                <!-- <input type="text" class="form-control" id="proveedor" formControlName="proveedor" (ngModelChange)="presupuesto.proveedor = $event"> -->
+
+                <select class="form-control" id="proveedor" formControlName="proveedor" (ngModelChange)="presupuesto.proveedor = $event">
+                    <option value="">Seleccione...</option>
+                    <option *ngFor="let proveedor of proveedores" value="{{
+                            proveedor.nombre }}">{{ proveedor.nombre }}</option>
+                </select>
+
                 <p class="alert alert-danger" *ngIf="presupuestoForm.controls.proveedor.invalid &&
                 presupuestoForm.controls.proveedor.touched">
                     El campo Proveedor es obligatorio.

@@ -5,6 +5,8 @@ import { Presupuesto } from 'src/app/modelos/presupuesto.interface';
 import { PresupuestosService } from 'src/app/servicios/presupuestos.service';
 import { Router } from '@angular/router';
 
+import { ProveedoresService } from '../../servicios/proveedores.service';
+
 @Component({
   selector: 'app-addpres',
   templateUrl: './addpres.component.html',
@@ -14,6 +16,8 @@ export class AddpresComponent {
 
   presupuestoForm: any;
   presupuesto!: Presupuesto;
+
+  proveedores: any[] = [];
   
   base: any;
   tipo: any;
@@ -22,8 +26,18 @@ export class AddpresComponent {
 
   
 
-  constructor(private pf: FormBuilder, private presupuestoService: PresupuestosService, private router: Router) {
-    
+  constructor(private pf: FormBuilder, 
+              private presupuestoService: PresupuestosService, 
+              private router: Router, 
+              private proveedoresService: ProveedoresService) {
+                this.proveedoresService.getProveedores().subscribe(proveedores => {
+                  for (const id$ in proveedores) {
+                    if (proveedores.hasOwnProperty(id$)) {
+                      this.proveedores.push({ ...proveedores[id$], id$ });
+                    }
+                  }
+                });
+
   }
 
   ngOnInit() {
