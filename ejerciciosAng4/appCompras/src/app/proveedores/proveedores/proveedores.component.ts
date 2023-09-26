@@ -9,19 +9,23 @@ import { ProveedoresService } from "src/app/servicios/proveedores.service";
 export class ProveedoresComponent {
 
 
-  
+  cargando: boolean;
 
   proveedores:any[] = [];
 
   constructor( private proveedoresService: ProveedoresService) {
+    this.cargando = true;
     this.proveedoresService.getProveedores().subscribe(proveedores => {
     for (const id$ in proveedores) {
       if (proveedores.hasOwnProperty(id$)) {
-        this.proveedores.push({ ...proveedores[id$], id$ });
+        setTimeout(() =>{this.proveedores.push({ ...proveedores[id$], id$ })},1000);
+        
       }
     }
+    
   });
   console.log(this.proveedores);
+  this.cargando = false;
 }
 
 eliminarProveedor(id$: string) {
