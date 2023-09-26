@@ -24,6 +24,7 @@ import { PresupuestosComponent } from './presupuestos/presupuestos/presupuestos.
 import { EditpresComponent } from './presupuestos/editpres/editpres.component';
 import { RegistroComponent } from './autenticacion/registro/registro.component';
 import { InisesComponent } from './autenticacion/inises/inises.component';
+import { EditproveedorComponent } from './proveedores/editproveedor/editproveedor.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { InisesComponent } from './autenticacion/inises/inises.component';
     EditpresComponent,
     RegistroComponent,
     InisesComponent,
+    EditproveedorComponent,
     
   ],
   imports: [

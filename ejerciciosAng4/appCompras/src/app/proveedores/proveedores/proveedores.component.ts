@@ -10,11 +10,34 @@ export class ProveedoresComponent {
 
   
 
-  proveedores:any;
+  proveedores:any[] = [];
 
-  constructor( private proveedoresService: ProveedoresService) { }
-
-  ngOnInit() {
-    this.proveedores = this.proveedoresService.getProveedores( );
+  constructor( private proveedoresService: ProveedoresService) {
+    this.proveedoresService.getProveedores().subscribe(proveedores => {
+    for (const id$ in proveedores) {
+      if (proveedores.hasOwnProperty(id$)) {
+        this.proveedores.push({ ...proveedores[id$], id$ });
+      }
     }
+  });
+  console.log(this.proveedores);
 }
+
+eliminarProveedor(id$: string) {
+  this.proveedoresService.delProveedor(id$)
+    .subscribe(res => {
+      this.proveedores = [];
+      this.proveedoresService.getProveedores().subscribe(proveedores => {
+        for (const id$ in proveedores) {
+          if (proveedores.hasOwnProperty(id$)) {
+            this.proveedores.push({ ...proveedores[id$], id$ });
+          }
+        }
+      });
+    });
+
+
+}
+
+}
+
