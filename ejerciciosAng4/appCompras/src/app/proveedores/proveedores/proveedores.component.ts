@@ -15,7 +15,20 @@ export class ProveedoresComponent {
 
   constructor( private proveedoresService: ProveedoresService) {
     this.cargando = true;
-    this.proveedoresService.getProveedores().subscribe(proveedores => {
+
+
+    setTimeout(() => {
+      this.proveedoresService.getProveedores().subscribe(proveedores => {
+        for (const id$ in proveedores) {
+          if (proveedores.hasOwnProperty(id$)) {
+            this.proveedores.push({ ...proveedores[id$], id$ });
+            
+          }
+          this.cargando = false;
+    }})}, 3000);
+
+
+    /* this.proveedoresService.getProveedores().subscribe(proveedores => {
     for (const id$ in proveedores) {
       if (proveedores.hasOwnProperty(id$)) {
         setTimeout(() =>{this.proveedores.push({ ...proveedores[id$], id$ })},1000);
@@ -25,7 +38,7 @@ export class ProveedoresComponent {
     
   });
   console.log(this.proveedores);
-  this.cargando = false;
+  this.cargando = false; */
 }
 
 eliminarProveedor(id$: string) {
