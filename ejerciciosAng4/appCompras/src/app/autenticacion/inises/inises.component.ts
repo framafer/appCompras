@@ -16,6 +16,8 @@ export class InisesComponent {
 
   mensaje = false;
 
+  autenticando = false;
+
   constructor(private formBuilder: FormBuilder,
     private autService: AutenticacionService,
     private router: Router,
@@ -39,15 +41,16 @@ export class InisesComponent {
   }
 
   onSubmit() {
+    this.autenticando = true;
     this.userdata = this.saveUserdata();
     this.autService.inicioSesion(this.userdata);
     setTimeout(() => {
       if (this.isAuth() === false) {
         this.mensaje = true;
+        this.autenticando = false;
       }
-    }, 2000);
+    }, 6000);
   }
-
   saveUserdata() {
     const saveUserdata = {
       email: this.loginForm.get('email').value,
