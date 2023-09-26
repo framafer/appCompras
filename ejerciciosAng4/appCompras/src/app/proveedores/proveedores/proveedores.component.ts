@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ProveedoresService } from "src/app/servicios/proveedores.service";
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-proveedores',
@@ -9,11 +11,16 @@ import { ProveedoresService } from "src/app/servicios/proveedores.service";
 export class ProveedoresComponent {
 
 
-  cargando: boolean;
+  campoBusqueda!: FormControl;
+  busqueda!: string;
 
-  proveedores:any[] = [];
+  cargando = false;
+  resultados = false;
+  noresultados = false;
 
-  constructor( private proveedoresService: ProveedoresService) {
+  proveedores: any[] = [];
+
+  constructor(private proveedoresService: ProveedoresService) {
     this.cargando = true;
 
 
@@ -22,10 +29,12 @@ export class ProveedoresComponent {
         for (const id$ in proveedores) {
           if (proveedores.hasOwnProperty(id$)) {
             this.proveedores.push({ ...proveedores[id$], id$ });
-            
+
           }
           this.cargando = false;
-    }})}, 3000);
+        }
+      })
+    }, 3000);
 
 
     /* this.proveedoresService.getProveedores().subscribe(proveedores => {
@@ -39,23 +48,27 @@ export class ProveedoresComponent {
   });
   console.log(this.proveedores);
   this.cargando = false; */
-}
+  }
 
-eliminarProveedor(id$: string) {
-  this.proveedoresService.delProveedor(id$)
-    .subscribe(res => {
-      this.proveedores = [];
-      this.proveedoresService.getProveedores().subscribe(proveedores => {
-        for (const id$ in proveedores) {
-          if (proveedores.hasOwnProperty(id$)) {
-            this.proveedores.push({ ...proveedores[id$], id$ });
+  eliminarProveedor(id$: string) {
+    this.proveedoresService.delProveedor(id$)
+      .subscribe(res => {
+        this.proveedores = [];
+        this.proveedoresService.getProveedores().subscribe(proveedores => {
+          for (const id$ in proveedores) {
+            if (proveedores.hasOwnProperty(id$)) {
+              this.proveedores.push({ ...proveedores[id$], id$ });
+            }
           }
-        }
+        });
       });
-    });
 
 
-}
+  }
+
+
+
+  
 
 }
 

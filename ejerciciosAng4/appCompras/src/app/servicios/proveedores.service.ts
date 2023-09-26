@@ -69,6 +69,11 @@ export class ProveedoresService {
       return this.http.delete( url ).pipe(map( res => res));
       
     }
+
+    getProveedoresSearch(busqueda:string){
+      const url =  `${this.preURL}?orderBy = "nombre"&startAt={busqueda}&endAt="{busqueda}\uf8ff"`;
+      return this.http.get(url).pipe(map(res => res));
+    }
     
 
 }
