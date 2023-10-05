@@ -14,8 +14,11 @@ import { Proveedor } from '../modelos/proveedor.interface';
 export class ProveedoresService {
 
 
-  presURL = '/proveedores.json';
+  presURL = 'https://comprasapp-936c4-default-rtdb.europe-west1.firebasedatabase.app/proveedores.json';
   preURL = '/proveedores';
+
+  /* presURL = '/proveedores.json';
+  preURL = '/proveedores'; */
 
   constructor(public http: HttpClient
     ) { }

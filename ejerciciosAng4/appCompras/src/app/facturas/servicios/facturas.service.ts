@@ -9,8 +9,12 @@ import { Factura } from '../modelos/factura';
   providedIn: 'root'
 })
 export class FacturasService {
-  presURL = '/facturas.json';
+
+  presURL = 'https://comprasapp-936c4-default-rtdb.europe-west1.firebasedatabase.app/facturas.json';
   preURL = '/facturas';
+  
+  /* presURL = '/facturas.json';
+  preURL = '/facturas'; */
 
   constructor(public http: HttpClient
     ) { }

@@ -13,10 +13,13 @@ import { Observable } from 'rxjs';
 })
 export class PresupuestosService {
 
-
-  presURL = '/presupuestos.json';
+  presURL = 'https://comprasapp-936c4-default-rtdb.europe-west1.firebasedatabase.app/presupuestos.json';
   preURL = '/presupuestos';
 
+
+  /* presURL = '/presupuestos.json';
+  preURL = '/presupuestos';
+ */
   constructor(public http: HttpClient
     ) { }
 

@@ -1,3 +1,43 @@
 La dirección del Firebase:    comprasapp-936c4
 
 
+La dirección del servidor Amazon:     http://comprasapp.s3-website.eu-north-1.amazonaws.com
+
+
+
+En firebase:
+
+
+Project Console: https://console.firebase.google.com/project/comprasapp-936c4/overview
+Hosting URL: https://comprasapp-936c4.web.app
+PS C:\Datos\angular7\appCompras\ejerciciosAng4\appCompras\dist> 
+
+
+
+Las URLs:   
+
+En Firebase:
+
+https://comprasapp-936c4.web.app
+comprasapp-936c4.web.app
+comprasapp-936c4.firebaseapp.com
+
+
+En Amazon: 
+
+https://s3.console.aws.amazon.com/s3/buckets/comprasapp?region=eu-north-1&tab=properties
+
+s3-website dash (-) Region ‐ http://bucket-name.s3-website-Region.amazonaws.com
+
+s3-website dot (.) Region ‐ http://bucket-name.s3-website.Region.amazonaws.com
+
+
+http://comprasapp.s3-website.eu-north-1.amazonaws.com
+
+
+
+Una vez subido el Proyecto a firebase en un hosting:
+
+Project Console: https://console.firebase.google.com/project/comprasapp-936c4/overview
+Hosting URL: https://comprasapp-936c4.web.app
+
